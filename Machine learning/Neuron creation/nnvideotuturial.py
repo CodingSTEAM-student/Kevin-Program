@@ -26,25 +26,26 @@ loaders = {
 }
 
 print("loaders created")
+#Used ai to comment the code 
 
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
 
-        self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
-        self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
-        self.conv2_drop = nn.Dropout2d()
-        self.fc1 = nn.Linear(320, 50)
-        self.fc2 = nn.Linear(50, 10)
+        self.conv1 = nn.Conv2d(1, 10, kernel_size=5) # 1 input channel, 10 output channels, 5x5 kernel
+        self.conv2 = nn.Conv2d(10, 20, kernel_size=5) # 10 input channels, 20 output channels, 5x5 kernel
+        self.conv2_drop = nn.Dropout2d() # Dropout layer to prevent overfitting
+        self.fc1 = nn.Linear(320, 50) # 320 input features, 50 output features
+        self.fc2 = nn.Linear(50, 10) # 50 input features, 10 output features (10 classes for MNIST)
 
     def forward(self, x):
-        x = F.relu(F.max_pool2d(self.conv1(x), 2))
-        x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
-        x = x.view(-1, 320)
-        x = F.relu(self.fc1(x))
-        x = self.fc2(x)
+        x = F.relu(F.max_pool2d(self.conv1(x), 2)) # Apply ReLU activation and max pooling to the first convolutional layer
+        x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2)) # Apply ReLU activation, dropout, and max pooling to the second convolutional layer
+        x = x.view(-1, 320) # Flatten the output from the convolutional layers 
+        x = F.relu(self.fc1(x)) # Apply ReLU activation to the first fully connected layer 
+        x = self.fc2(x) # Apply the second fully connected layer
 
-        return F.softmax(x, dim=1)
+        return F.softmax(x, dim=1) # Apply softmax activation to the output layer
         
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CNN().to(device)
@@ -52,6 +53,7 @@ optimiser = optim.Adam(model.parameters(), lr=0.001)
 loss_fn = nn.CrossEntropyLoss() 
 
 print("cuda available" if torch.cuda.is_available() else "cuda not available")
+print(f'Using device: {device}')
 print("model created")
 
 def train(epoch):
@@ -60,7 +62,7 @@ def train(epoch):
     for batch_idx, (data, target) in enumerate(loaders['train']):
         data, target = data.to(device), target.to(device)
         # print("sending data to device")
-        optimiser.zero_grad()
+        optimiser.zero_grad() 
         output = model(data)
         loss = loss_fn(output, target)
         loss.backward()
@@ -86,7 +88,6 @@ def test():
     # Divide test_loss by the number of batches, not the dataset size
     test_loss /= len(loaders['test'].dataset)  
     print(f'\nTest set: Average loss: {test_loss:.4f}, Accuracy: {correct}/{len(loaders["test"].dataset)} ({100. * correct / len(loaders["test"].dataset):.0f}%)\n')
-print(device)
 print("Training started")
 for epoch in range(1, 11):
     train(epoch)
