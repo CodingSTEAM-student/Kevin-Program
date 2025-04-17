@@ -88,9 +88,12 @@ def test():
     # Divide test_loss by the number of batches, not the dataset size
     test_loss /= len(loaders['test'].dataset)  
     print(f'\nTest set: Average loss: {test_loss:.4f}, Accuracy: {correct}/{len(loaders["test"].dataset)} ({100. * correct / len(loaders["test"].dataset):.0f}%)\n')
+
 print("Training started")
 for epoch in range(1, 11):
+    print(f'Starting Training epoch: {epoch}')
     train(epoch)
+    print(f'Starting testing epoch: {epoch}')
     test()
 
 model.eval()
@@ -104,6 +107,6 @@ output = model(data)
 prediction = output.argmax(dim=1, keepdim=True).item()  # Get the predicted class
 
 print(f'Prediction: {prediction}')
-image = data.squeeze().cpu().numpy()  # Remove batch dimension and move to CPU for plotting 
-plt.imshow(image[0], cmap='gray')
+image = data.squeeze(0).cpu().numpy()  # Remove only the batch dimension
+plt.imshow(image[0], cmap='gray')  # Use the first channel for grayscale
 plt.show()
