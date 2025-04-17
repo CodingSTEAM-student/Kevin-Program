@@ -1,5 +1,5 @@
 matplotlib==3.10.1
-numpy==1.18.1 
+numpy==2.2
 pygame==2.6.1
-torch ==3.0.2
+torch ==2.6.0
 torchvision==0.21.0
