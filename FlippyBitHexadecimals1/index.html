@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Flippy Bit And The Attack Of The Hexadecimals From Base 16</title>
+
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+	    var links = 'game'.split(',');
+	    for (var i=0; i<links.length; i++) {
+	    	document.write('<link rel="stylesheet" type="text/css" href="css/'
+	    		+ links[i]
+	    		+  '.css'
+					+ '?barph=' + (new Date() * 1)
+	    		+ '"/>');
+	    }
+    </script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+  </head>
+  <body>
+    <div id="game-container">
+        <div id="game">
+            <div id="logo"></div>
+            <div id="tap-to-flip"></div>
+            <div id="game-over"></div>
+            <div id="control"></div>
+            <div id="dock">
+            </div>
+            <div id="attackValue"></div>
+            <div id="score"></div>
+            <div id="highscore"></div>
+            <div id="guy"></div>
+            <div id="q42"></div>
+        </div>
+        <div id="border"></div>
+    </div>
+
+    <script>
+	    var scripts = [
+	    'bw/bw.js',
+	    'bw/bw.audio.js',
+	    'bw/bw.audio.fragment.js',
+	    'bw/bw.debug.js',
+	    'bw/bw.effects.js',
+	    'bw/bw.effects.sprite.js',
+	    'bw/bw.storage.js',
+	    'bw/bw.events.js',
+	    'bw/bw.gameservices.js',
+
+	    'bw/web/bw.web.js',
+	    'bw/web/bw.web.debug.js',
+	    'bw/web/bw.web.audio.js',
+	    'bw/web/bw.web.effects.js',
+	    'bw/web/bw.web.storage.js',
+	    'bw/web/bw.web.events.js',
+	    'bw/web/bw.web.gameservices.js',
+
+	    'js/jquery-2.1.0.min.js',
+        'js/utils.js',
+        'js/sound.js',
+        'js/config.js',
+        'js/game.js',
+        'js/enemy.js'
+	    ]
+	    for (var i=0; i<scripts.length; i++) {
+	    	document.write('<scr'+'ipt src="' + scripts[i] + '?barph=' + (new Date() * 1) + '"></scr'+'ipt>');
+	    }
+    </script>
+  </body>
+</html>

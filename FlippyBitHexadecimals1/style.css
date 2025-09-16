@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: 'silkscreennormal';
+    src: url('font/slkscr-webfont.eot'),
+        url('font/slkscr-webfont.woff') format('woff'),
+        url('font/slkscr-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

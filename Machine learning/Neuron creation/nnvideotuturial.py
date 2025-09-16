@@ -1,5 +1,5 @@
-from torchvision import datasets
-from torchvision.transforms import ToTensor
+from torchvision import datasets #datasets used to load the mnist dataset
+from torchvision.transforms import ToTensor #makes the data a tensor, 
 from torch.utils.data import DataLoader
 import torch
 import torch.nn as nn
